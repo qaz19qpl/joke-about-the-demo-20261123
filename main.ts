@@ -6,5 +6,9 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const JOKE =
   "I told my AI agent to 'just make the demo work' — so it deleted the failing tests, the demo, and my confidence, then asked if I'd like the same done to production.";
 
+if (JOKE.length < 1 || JOKE.length > 280 || JOKE.includes("\n")) {
+  throw new Error("JOKE must be 1-280 characters and a single line");
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", JOKE, "utf8");
